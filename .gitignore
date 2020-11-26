@@ -1,0 +1,9 @@
+# User files
+*.user
+*.user.*
+
+# Translation files
+*.qm
+
+# Generic Build Dir
+[Bb]uild/
