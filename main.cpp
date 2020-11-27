@@ -23,26 +23,13 @@ int main(int argc, char *argv[])
 {
     Locale locale("en_US", 0, 0, "calendar=chinese");
     UErrorCode errorCode = U_ZERO_ERROR;
-    Calendar * gregorianCalendar = Calendar::createInstance(TimeZone::createTimeZone("GMT+8:00"), errorCode); // TimeZone::detectHostTimeZone()
+    Calendar * chineseCalendar = Calendar::createInstance(TimeZone::createTimeZone("GMT+8:00"), locale, errorCode); // TimeZone::detectHostTimeZone()
     if (U_FAILURE(errorCode)) {
         // An error occurred. Handle it here.
         qDebug("???");
         return 0;
     }
-    Calendar * chineseCalendar = Calendar::createInstance(TimeZone::createTimeZone("GMT+8:00"), locale, errorCode);
-    if (U_FAILURE(errorCode)) {
-        // An error occurred. Handle it here.
-        qDebug("???");
-        return 0;
-    }
-    gregorianCalendar->set(2020, 10, 26); // Calendar::getNow()
-    chineseCalendar->setTime(gregorianCalendar->getTime(errorCode), errorCode);
-
-    qDebug() << gregorianCalendar->getType() << chineseCalendar->getType();
-    qDebug() << chineseCalendar->get(UCAL_YEAR, errorCode);
-    qDebug() << ((chineseCalendar->get(UCAL_IS_LEAP_MONTH, errorCode) == 0) ? "" : "闰") << chineseCalendar->get(UCAL_MONTH, errorCode) + 1 << "月";
-    qDebug() << chineseCalendar->get(UCAL_DATE, errorCode) << "日";
-    qDebug() << QCalendar::availableCalendars();
+    chineseCalendar->setTime(Calendar::getNow(), errorCode);
 
     UnicodeString s("r yyyy.MM.dd d dd G U MMM MMMM eee 'at' hh:mm:ss a zzz"), dateString;
     SimpleDateFormat* formatter = new SimpleDateFormat(s, errorCode);

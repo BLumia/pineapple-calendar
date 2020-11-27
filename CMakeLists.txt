@@ -33,6 +33,10 @@ if(ANDROID)
     main.cpp
     mainwindow.cpp
     mainwindow.h
+    pabstructcalendar.cpp
+    pabstructcalendar.h
+    pchinesecalendar.cpp
+    pchinesecalendar.h
     mainwindow.ui
   )
 else()
@@ -40,6 +44,10 @@ else()
     main.cpp
     mainwindow.cpp
     mainwindow.h
+    pabstructcalendar.cpp
+    pabstructcalendar.h
+    pchinesecalendar.cpp
+    pchinesecalendar.h
     mainwindow.ui
   )
 endif()
