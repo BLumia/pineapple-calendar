@@ -58,9 +58,11 @@
 
 另外我们也得确定已有项目会不会接受类似的特性请求。我如果觉得时机合适了，我会先发个特性请求来看看已有项目有没有意向进行这种支持再说。
 
-### 为毛线不 fork 现有项目？
+### ~~为毛线不 fork 现有项目？~~
 
-对于 Plasmoid 插件，我原本是打算 fork KDE plasma 官方的日历插件来着，但发现想把官方的日历插件从 `plasma-workspace` 中拆出来似乎并不简单。并且，它提供的日历接口目前看上去还不错（至少没想象的那么糟糕），于是我就可以直接写个简单的 plasmoid 插件来扩展 plasma calendar QML 控件来使它符合我的需求。
+~~对于 Plasmoid 插件，我原本是打算 fork KDE plasma 官方的日历插件来着，但发现想把官方的日历插件从 `plasma-workspace` 中拆出来似乎并不简单。并且，它提供的日历接口目前看上去还不错（至少没想象的那么糟糕），于是我就可以直接写个简单的 plasmoid 插件来扩展 plasma calendar QML 控件来使它符合我的需求。~~
+
+*edit: files under `/plasmoid/package/contents/ui/calendar/` forked from `plasma-workspace` with path `/src/declarativeimports/calendar/qml/` and commit hash `431d4cc0d4507ff8dc6b64fc039817635b600e65`*
 
 至于独立的应用，由于（至少目前）独立应用的存在目的是用来实验接口和测试，所以显然自己手写是更合适的选择。
 

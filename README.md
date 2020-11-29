@@ -24,6 +24,22 @@ Actually I'm not familiar with the date and time thing, it could be more complex
    - Support *Solar Terms(节气)* via calendar events.
    - Support ics.
 
+## Building
+
+Current state is totally unusable but in case you are interested..
+
+By default it will only build the standalone application. The plasmoid won't build unless you enable the `BUILD_PLASMOID` CMake option.
+
+### Build and test the plasmoid
+
+Ensure you build with `-DBUILD_PLASMOID=ON` option, do `sudo make install` once your compile completed.
+
+``` shell
+$ plasmoidviewer -a net.blumia.pineapple.calendar -l topedge -f horizontal
+```
+
+*Note: I'm not sure how to get the c++ native plugin loaded if you use custom DESTDIR for your installation, don't change install dir if you don't know either, and please let me know if you know*
+
 ## Questions
 
 ### Why not using QCalendar?
@@ -58,9 +74,11 @@ Well, we can't say I'm not going to do contribute to existed projects. The main 
 
 Also, we should know if existed project can accept such feature request (since they doesn't support it). When I think I can submit a patch, I'll submit a feature request first to ensure they're willing to accept such feature.
 
-### Why not create a fork of existed project?
+### ~~Why not create a fork of existed project?~~
 
-For the plasmoid, originally I planned to fork the KDE plasma official calendar plugin but found out it seems not very easy to splite it out from `plasma-workspace` to a standalone plasmoid plugin, and seems it have a decent (or at least not as bad as what I image) interface, so I can write a simple plasmoid which extend the plasma calendar QML widget to fit my own need.
+~~For the plasmoid, originally I planned to fork the KDE plasma official calendar plugin but found out it seems not very easy to splite it out from `plasma-workspace` to a standalone plasmoid plugin, and seems it have a decent (or at least not as bad as what I image) interface, so I can write a simple plasmoid which extend the plasma calendar QML widget to fit my own need.~~
+
+*edit: files under `/plasmoid/package/contents/ui/calendar/` forked from `plasma-workspace` with path `/src/declarativeimports/calendar/qml/` and commit hash `431d4cc0d4507ff8dc6b64fc039817635b600e65`*
 
 For the standalone application, since it's mainly for testing (at least at this moment), write from scratch will be better.
 
