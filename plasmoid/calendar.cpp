@@ -21,6 +21,11 @@ QString calendar::nativeText() const
     return m_nativeText;
 }
 
+QString calendar::alternateCalendarDayText(int year, int month, int day)
+{
+    return QStringLiteral("非%1").arg(QString::number(day + 1));
+}
+
 K_EXPORT_PLASMA_APPLET_WITH_JSON(calendar, calendar, "metadata.json")
 
 #include "calendar.moc"

@@ -20,6 +20,8 @@ public:
 
     QString nativeText() const;
 
+    Q_INVOKABLE QString alternateCalendarDayText(int year, int month, int day);
+
 private:
     QString m_nativeText;
 };

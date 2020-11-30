@@ -9,6 +9,7 @@ import QtQuick 2.0
 import org.kde.plasma.calendar 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as Components
+import org.kde.plasma.plasmoid 2.0 // for alternate calendar
 
 import org.kde.plasma.calendar 2.0
 
@@ -101,13 +102,43 @@ MouseArea {
 
     Components.Label {
         id: label
+        width: todayRect.width
+        height: todayRect.height / 2
         anchors {
-            fill: todayRect
+            top: todayRect.top
+            left: todayRect.left
             margins: PlasmaCore.Units.smallSpacing
         }
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         text: model.label || dayNumber
+        opacity: isCurrent ? 1.0 : 0.5
+        wrapMode: Text.NoWrap
+        elide: Text.ElideRight
+        fontSizeMode: Text.HorizontalFit
+        font.pixelSize: Math.max(PlasmaCore.Theme.smallestFont.pixelSize, Math.floor(daysCalendar.cellHeight / 3))
+        // Plasma component set point size, this code wants to set pixel size
+        // Setting both results in a warning
+        // -1 is an undocumented same as unset (see qquickvaluetypes)
+        font.pointSize: -1
+        color: today ? PlasmaCore.Theme.backgroundColor : PlasmaCore.Theme.textColor
+        Behavior on color {
+            ColorAnimation { duration: PlasmaCore.Units.shortDuration * 2 }
+        }
+    }
+
+    Components.Label {
+        id: alternateLabel
+        width: todayRect.width
+        height: todayRect.height / 2
+        anchors {
+            bottom: todayRect.bottom
+            left: todayRect.left
+            margins: PlasmaCore.Units.smallSpacing
+        }
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        text: plasmoid.nativeInterface.alternateCalendarDayText(yearNumber, monthNumber, dayNumber)
         opacity: isCurrent ? 1.0 : 0.5
         wrapMode: Text.NoWrap
         elide: Text.ElideRight
