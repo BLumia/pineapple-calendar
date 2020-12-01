@@ -1,15 +1,14 @@
-#ifndef PCHINESECALENDAR_H
-#define PCHINESECALENDAR_H
+#ifndef PGREGORIANCALENDAR_H
+#define PGREGORIANCALENDAR_H
 
 #include "pabstructcalendar.h"
 
-class PChineseCalendarPrivate;
-class PChineseCalendar : public PAbstructCalendar
+class PGregorianCalendarPrivate;
+class PGregorianCalendar : public PAbstructCalendar
 {
-    Q_OBJECT
 public:
-    PChineseCalendar(QObject *parent = nullptr);
-    ~PChineseCalendar();
+    PGregorianCalendar(QObject *parent = nullptr);
+    ~PGregorianCalendar();
 
     // PAbstructCalendar interface
 public:
@@ -19,17 +18,14 @@ public:
     bool setTime(const double time) override;
     bool setDate(int32_t year, int32_t month, int32_t day) override;
     bool setTimeZone(const QString timezoneId) override;
-    QString dayDisplayName() const override;
-    QString monthDisplayName() const override;
-    QString yearDisplayName() const override;
     int day() const override;
     int month() const override;
     int year() const override;
     bool isLeapMonth() const override;
 
 private:
-    QScopedPointer<PChineseCalendarPrivate> d_ptr;
-    Q_DECLARE_PRIVATE(PChineseCalendar)
+    QScopedPointer<PGregorianCalendarPrivate> d_ptr;
+    Q_DECLARE_PRIVATE(PGregorianCalendar)
 };
 
-#endif // PCHINESECALENDAR_H
+#endif // PGREGORIANCALENDAR_H

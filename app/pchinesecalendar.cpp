@@ -1,5 +1,7 @@
 #include "pchinesecalendar.h"
 
+#include "picucalendar_p.h"
+
 #include <unicode/calendar.h>
 #include <unicode/smpdtfmt.h>
 
@@ -11,25 +13,16 @@ using icu::SimpleDateFormat;
 using icu::TimeZone;
 using icu::UnicodeString;
 
-class PChineseCalendarPrivate
+class PChineseCalendarPrivate : public PIcuCalendarPrivate
 {
 public:
     explicit PChineseCalendarPrivate(PChineseCalendar *q);
     ~PChineseCalendarPrivate();
 
-    double time() const;
-    bool setTime(double time);
-
-    int32_t date() const;
-    int32_t month() const;
-    int32_t year() const;
-    bool isLeapMonth() const;
-
     QString yearDisplayName() const;
+    QString monthDisplayName() const;
 
 private:
-    Calendar * m_cal = nullptr;
-
     PAbstructCalendar *q_ptr;
     Q_DECLARE_PUBLIC(PAbstructCalendar)
 };
@@ -48,72 +41,14 @@ PChineseCalendarPrivate::~PChineseCalendarPrivate()
 
 }
 
-double PChineseCalendarPrivate::time() const
-{
-    UErrorCode errorCode = U_ZERO_ERROR;
-    UDate time = m_cal->getTime(errorCode);
-    Q_ASSERT(!U_FAILURE(errorCode));
-
-    return time;
-}
-
-bool PChineseCalendarPrivate::setTime(double time)
-{
-    UErrorCode errorCode = U_ZERO_ERROR;
-    m_cal->setTime(time, errorCode);
-    if (U_FAILURE(errorCode)) {
-        // An error occurred. Handle it here.
-        // TODO.
-        return false;
-    }
-
-    return true;
-}
-
-int32_t PChineseCalendarPrivate::date() const
-{
-    UErrorCode errorCode = U_ZERO_ERROR;
-    int32_t day = m_cal->get(UCAL_DATE, errorCode);
-    Q_ASSERT(!U_FAILURE(errorCode));
-
-    return day;
-}
-
-int32_t PChineseCalendarPrivate::month() const
-{
-    UErrorCode errorCode = U_ZERO_ERROR;
-    int32_t month = m_cal->get(UCAL_MONTH, errorCode);
-    Q_ASSERT(!U_FAILURE(errorCode));
-
-    return month;
-}
-
-int32_t PChineseCalendarPrivate::year() const
-{
-    UErrorCode errorCode = U_ZERO_ERROR;
-    int32_t year = m_cal->get(UCAL_YEAR, errorCode);
-    Q_ASSERT(!U_FAILURE(errorCode));
-
-    return year;
-}
-
-bool PChineseCalendarPrivate::isLeapMonth() const
-{
-    UErrorCode errorCode = U_ZERO_ERROR;
-    int32_t isLaepMonth = m_cal->get(UCAL_IS_LEAP_MONTH, errorCode);
-    Q_ASSERT(!U_FAILURE(errorCode));
-
-    return isLaepMonth;
-}
-
 QString PChineseCalendarPrivate::yearDisplayName() const
 {
-    UErrorCode errorCode = U_ZERO_ERROR;
-    UnicodeString s("U"), dateString;
-    SimpleDateFormat* formatter = new SimpleDateFormat(s, errorCode);
-    formatter->setCalendar(*m_cal);
-    formatter->format(m_cal->getTime(errorCode), dateString);
-    return QString::fromUtf16(dateString.getBuffer());
+    return formattedDataString("U");
+}
+
+QString PChineseCalendarPrivate::monthDisplayName() const
+{
+    return formattedDataString("MMM");
 }
 
 // --------------- Item Get Border Line --------------- //
@@ -154,6 +89,20 @@ bool PChineseCalendar::setTime(const double time)
     return d->setTime(time);
 }
 
+bool PChineseCalendar::setDate(int32_t year, int32_t month, int32_t day)
+{
+    Q_D(PChineseCalendar);
+
+    return d->setDate(year, month, day);
+}
+
+bool PChineseCalendar::setTimeZone(const QString timezoneId)
+{
+    Q_D(PChineseCalendar);
+
+    return d->setTimeZone(timezoneId);
+}
+
 QString PChineseCalendar::dayDisplayName() const
 {
     auto dayNameByDate = [](int d) -> std::wstring {
@@ -180,7 +129,9 @@ QString PChineseCalendar::dayDisplayName() const
 
 QString PChineseCalendar::monthDisplayName() const
 {
-    return (isLeapMonth() ? QString("闰%1月") : QString("%1月")).arg(month());
+    Q_D(const PChineseCalendar);
+//    return (isLeapMonth() ? QString("闰%1月") : QString("%1月")).arg(month());
+    return d->monthDisplayName();
 }
 
 QString PChineseCalendar::yearDisplayName() const

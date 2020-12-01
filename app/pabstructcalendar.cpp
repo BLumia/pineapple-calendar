@@ -9,6 +9,12 @@ PAbstructCalendar::PAbstructCalendar(QObject *parent) : QObject(parent)
 
 }
 
+bool PAbstructCalendar::setTimeZone(const QString timezoneId)
+{
+    Q_UNUSED(timezoneId);
+    return false;
+}
+
 QString PAbstructCalendar::dayDisplayName() const
 {
     return QString::number(day());

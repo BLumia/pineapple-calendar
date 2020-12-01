@@ -18,6 +18,13 @@ public:
     // Sets this Calendar's current time with the given \time.
     // The \l time specified should be in non-local UTC (GMT) time in milliseconds.
     virtual bool setTime(const double time) = 0;
+    // Roll the calendar to the gaven year, month and day.
+    // The year, month and day IS in THIS calendar system, NOT Proleptic Gregorian calendar
+    virtual bool setDate(int32_t year, int32_t month, int32_t day) = 0;
+    // \l timezoneId is the IANA ID for a TimeZone, such as
+    // "America/Los_Angeles", or a custom ID such as "GMT-8:00"
+    // List of timezone IDs: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+    virtual bool setTimeZone(const QString timezoneId);
     virtual QString dayDisplayName() const;
     virtual QString monthDisplayName() const;
     virtual QString yearDisplayName() const;

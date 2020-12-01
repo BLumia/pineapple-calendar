@@ -8,6 +8,10 @@ set(app_SOURCES
     pabstructcalendar.h
     pchinesecalendar.cpp
     pchinesecalendar.h
+    pgregoriancalendar.cpp
+    pgregoriancalendar.h
+    picucalendar_p.h
+    picucalendar_p.cpp
     mainwindow.ui
 )
 
