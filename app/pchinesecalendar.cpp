@@ -103,6 +103,11 @@ bool PChineseCalendar::setTimeZone(const QString timezoneId)
     return d->setTimeZone(timezoneId);
 }
 
+QString PChineseCalendar::alternateDayDisplayName() const
+{
+    return (day() == 1) ? monthDisplayName() :  dayDisplayName(); 
+}
+
 QString PChineseCalendar::dayDisplayName() const
 {
     auto dayNameByDate = [](int d) -> std::wstring {
@@ -115,7 +120,7 @@ QString PChineseCalendar::dayDisplayName() const
         case 1:
             result[0] = zot[1]; break;
         case 2:
-            result[0] = zot[2]; break;
+            result[0] = d % 10 == 0 ? a[2] : zot[2]; break;
         default:
             result[0] = zot[3];
         }

@@ -15,6 +15,8 @@ using icu::UnicodeString;
 class PIcuCalendarPrivate
 {
 public:
+    virtual ~PIcuCalendarPrivate();
+
     virtual double time() const;
     virtual bool setTime(double time);
     virtual bool setDate(int32_t year, int32_t month, int32_t day);

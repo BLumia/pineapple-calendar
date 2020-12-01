@@ -15,6 +15,11 @@ bool PAbstructCalendar::setTimeZone(const QString timezoneId)
     return false;
 }
 
+QString PAbstructCalendar::alternateDayDisplayName() const
+{
+    return (day() == 1) ? monthDisplayName() : dayDisplayName(); 
+}
+
 QString PAbstructCalendar::dayDisplayName() const
 {
     return QString::number(day());

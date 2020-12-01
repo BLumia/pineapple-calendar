@@ -25,6 +25,9 @@ public:
     // "America/Los_Angeles", or a custom ID such as "GMT-8:00"
     // List of timezone IDs: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
     virtual bool setTimeZone(const QString timezoneId);
+    // The string to be display in a month view calendar, for the grid of a single day.
+    // for alternate calender.
+    virtual QString alternateDayDisplayName() const;
     virtual QString dayDisplayName() const;
     virtual QString monthDisplayName() const;
     virtual QString yearDisplayName() const;

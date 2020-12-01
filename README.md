@@ -52,6 +52,8 @@ List of supported calendar system from Qt 5.15.1 at the time of I write this REA
 
 ### Why not writ a QCalendar plugin?
 
+*Note: I'm not sure if these are correct, let me know if it's wrong or I missed something. Thanks!*
+
 Well, there are some issues I've found when I do resources about calendar system and QCalendar support, and here are something I feel very weird about the current QCalendar implementation.
 
 Firstly, writing a QCalendar plugin requires we subclass `QCalendarBackend`, which is a private API, also in their API doc, there is a `QCalendar::YearMonthDay` type which even doesn't have a related documentation.
@@ -60,7 +62,9 @@ Secondly, it seems it's not able to handle *leap month(闰月)*, for example, if
 
 *remark: there is a `QCalendar::monthName()` which may partially resolve this issue, so yeah we can get a proper display name, but still doesn't know if the month is a leap month*
 
-Last but not least, QCalendar seems doesn't care about TimeZone at all, when calling `QCalendar::partsFromDate()`, I'm not sure which timezone it will be treatd with the `QDate`...
+~~Last but not least, QCalendar seems doesn't care about TimeZone at all, when calling `QCalendar::partsFromDate()`, I'm not sure which timezone it will be treatd with the `QDate`...~~
+
+*remark: seems a QDate used here will always represent the day with respect to the proleptic Gregorian calendar ..?*
 
 ### Why an interface and an implementation? Why not just an implementation?
 

@@ -9,6 +9,9 @@
 
 #include <Plasma/Applet>
 
+#include "../app/pchinesecalendar.h"
+#include "../app/pgregoriancalendar.h"
+
 class calendar : public Plasma::Applet
 {
     Q_OBJECT
@@ -24,6 +27,9 @@ public:
 
 private:
     QString m_nativeText;
+
+    PChineseCalendar m_chineseCal;
+    PGregorianCalendar m_gregorianCal;
 };
 
 #endif

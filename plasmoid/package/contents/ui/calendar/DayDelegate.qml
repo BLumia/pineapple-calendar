@@ -138,7 +138,7 @@ MouseArea {
         }
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        text: plasmoid.nativeInterface.alternateCalendarDayText(yearNumber, monthNumber, dayNumber)
+        text: model.label || plasmoid.nativeInterface.alternateCalendarDayText(yearNumber, monthNumber, dayNumber)
         opacity: isCurrent ? 1.0 : 0.5
         wrapMode: Text.NoWrap
         elide: Text.ElideRight

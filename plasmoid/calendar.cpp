@@ -8,7 +8,7 @@
 
 calendar::calendar(QObject *parent, const QVariantList &args)
     : Plasma::Applet(parent, args),
-      m_nativeText(i18n("Text coming from C++ plugin"))
+      m_nativeText(i18n("CSS is Awesome!"))
 {
 }
 
@@ -23,7 +23,9 @@ QString calendar::nativeText() const
 
 QString calendar::alternateCalendarDayText(int year, int month, int day)
 {
-    return QStringLiteral("非%1").arg(QString::number(day + 1));
+    m_gregorianCal.setDate(year, month, day);
+    m_chineseCal.setTime(m_gregorianCal.time());
+    return m_chineseCal.alternateDayDisplayName();
 }
 
 K_EXPORT_PLASMA_APPLET_WITH_JSON(calendar, calendar, "metadata.json")

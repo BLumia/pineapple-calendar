@@ -36,6 +36,8 @@
 
 ### 为毛线不写 QCalendar 插件?
 
+*注：我不确定下面的这些到底对不对，如果不对或者我漏掉了什么内容的话，请务必告诉我，谢谢！*
+
 因为在查找日历系统和 QCalendar 支持的资料时，发现了一些问题，下面列一些我觉得非常奇怪的来自 QCalendar 实现的问题。
 
 首先，要提供自己的 QCalendar 插件就需要继承 `QCalendarBackend`，然而这玩意儿是个私有 API，另外在公开的 API 中，甚至还有个 `QCalendar::YearMonthDay` 类型压根没文档。
@@ -44,7 +46,9 @@
 
 *评注: 有个 `QCalendar::monthName()` 接口可以部分的解决这个问题，我们能通过这个接口拿到想要的显示名称，但还是没法知道某个月到底是不是闰月*
 
-最后，QCalendar 似乎压根不关心时区问题，当调用 `QCalendar::partsFromDate()` 的时候，我不知道应该按哪个时区处理传进来的 `QDate`...
+~~最后，QCalendar 似乎压根不关心时区问题，当调用 `QCalendar::partsFromDate()` 的时候，我不知道应该按哪个时区处理传进来的 `QDate`...~~
+
+*评注：QDate 应该总是一个 proleptic Gregorian calendar 所对应的日期..?*
 
 ### 为毛线要提供接口和实现？为毛不直接只写一个实现？
 

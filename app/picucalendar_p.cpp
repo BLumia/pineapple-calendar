@@ -1,5 +1,10 @@
 #include "picucalendar_p.h"
 
+PIcuCalendarPrivate::~PIcuCalendarPrivate()
+{
+
+}
+
 double PIcuCalendarPrivate::time() const
 {
     UErrorCode errorCode = U_ZERO_ERROR;
@@ -24,7 +29,8 @@ bool PIcuCalendarPrivate::setTime(double time)
 
 bool PIcuCalendarPrivate::setDate(int32_t year, int32_t month, int32_t day)
 {
-    m_cal->set(year, month, day);
+    // icu: Month value is 0-based. e.g., 0 for January.
+    m_cal->set(year, month - 1, day);
 
     return true;
 }
@@ -85,5 +91,9 @@ QString PIcuCalendarPrivate::formattedDataString(const icu_67::UnicodeString &st
     SimpleDateFormat* formatter = new SimpleDateFormat(str, errorCode);
     formatter->setCalendar(*m_cal);
     formatter->format(m_cal->getTime(errorCode), dateString);
-    return QString::fromUtf16(dateString.getBuffer());
+
+    std::string utf8Str;
+    dateString.toUTF8String<std::string>(utf8Str);
+
+    return QString::fromUtf8(utf8Str.c_str());
 }

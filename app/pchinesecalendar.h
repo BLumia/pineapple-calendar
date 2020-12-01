@@ -19,6 +19,7 @@ public:
     bool setTime(const double time) override;
     bool setDate(int32_t year, int32_t month, int32_t day) override;
     bool setTimeZone(const QString timezoneId) override;
+    QString alternateDayDisplayName() const override;
     QString dayDisplayName() const override;
     QString monthDisplayName() const override;
     QString yearDisplayName() const override;
