@@ -9,8 +9,8 @@
 
 #include <Plasma/Applet>
 
-#include "../app/pchinesecalendar.h"
-#include "../app/pgregoriancalendar.h"
+#include "pchinesecalendar.h"
+#include "pgregoriancalendar.h"
 
 class calendar : public Plasma::Applet
 {

@@ -31,6 +31,7 @@ if(BUILD_PLASMOID)
     find_package(Qt5 CONFIG REQUIRED COMPONENTS Quick Core)
 endif()
 
+add_subdirectory(lib)
 add_subdirectory(app)
 if(BUILD_PLASMOID)
     add_subdirectory(plasmoid)
