@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Calendar
-Name[zh_CN]=日历
-Comment=calendar with Chinese lunar calendar
-Comment[zh_CN]=带农历的日历
+Name[zh_CN]=时间和日历
+Comment=Date and time, and a calendar with Chinese lunar calendar
+Comment[zh_CN]=日期和时间，以及带农历的日历
 
 Icon=office-calendar
 Type=Service
@@ -21,4 +21,5 @@ X-KDE-PluginInfo-EnabledByDefault=true
 
 X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
+X-Plasma-Provides=org.kde.plasma.time,org.kde.plasma.date
 
