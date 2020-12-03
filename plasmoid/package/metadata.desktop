@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Calendar
+Name=Date and Calendar
 Name[zh_CN]=时间和日历
 Comment=Date and time, and a calendar with Chinese lunar calendar
 Comment[zh_CN]=日期和时间，以及带农历的日历
@@ -8,6 +8,7 @@ Icon=office-calendar
 Type=Service
 X-KDE-ServiceTypes=Plasma/Applet
 X-KDE-Library=plasma_applet_calendar
+X-KDE-ParentApp=org.kde.plasmashell
 
 X-KDE-PluginInfo-Author=Gary Wang
 X-KDE-PluginInfo-Email=wzc782970009@gmail.com

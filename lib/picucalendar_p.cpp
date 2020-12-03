@@ -84,7 +84,7 @@ bool PIcuCalendarPrivate::isLeapMonth() const
 
 // For formatting, see the documentation of SimpleDateFormat:
 // https://unicode-org.github.io/icu-docs/apidoc/released/icu4c/classicu_1_1SimpleDateFormat.html#details
-QString PIcuCalendarPrivate::formattedDataString(const icu_67::UnicodeString &str) const
+QString PIcuCalendarPrivate::formattedDataString(const UnicodeString &str) const
 {
     UErrorCode errorCode = U_ZERO_ERROR;
     UnicodeString dateString;

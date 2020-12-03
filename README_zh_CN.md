@@ -10,13 +10,17 @@
 
 ### 当前目标
 
- - 一个用于 KDE Plasma 5 的 Plasmoid （桌面插件），能...
-   - 将 *Gregorian 日历（格列高利历、公历）* 作为主日历.
-   - 能够显示简体中文农历作为备用日历.
- - 一个独立的 Qt 应用程序，能...
-   - 将 *Gregorian 日历* 作为主日历，能选择并设置通过应用提供的插件系统载入的日历作为备用日历.
-   - 自带一个简体中文农历插件.
-   - 尽可能多的和 Plasmoid 插件共用代码.
+ - [x] 一个用于 KDE Plasma 5 的 Plasmoid （桌面插件，Applet 小程序），能...
+   - [x] 将 *Gregorian 日历（格列高利历、公历）* 作为主日历.
+   - [x] 能够显示简体中文农历作为备用日历.
+ - [ ] 将相关需求试图向 KDE 推进
+   - [KDE bugzilla 中所汇报的特性请求](https://bugs.kde.org/show_bug.cgi?id=429892)
+   - [关于我的一些想法的谷歌文档页面链接](https://docs.google.com/document/d/1iwEwwK9w34ZKOegb8xcecO4u2Pjgv2e7ifXMFKox62Q/edit?usp=sharing)
+   - 如你也有意向，欢迎一起讨论想法！
+ - [ ] 一个独立的 Qt 应用程序，能...
+   - [ ] 将 *Gregorian 日历* 作为主日历，能选择并设置通过应用提供的插件系统载入的日历作为备用日历.
+   - [ ] 自带一个简体中文农历插件.
+   - [ ] 尽可能多的和 Plasmoid 插件共用代码.
 
 ### 非目标，但或许会考虑支持
 
@@ -24,51 +28,29 @@
    - 支持通过日历事件来支持节气显示.
    - 支持 ics 格式.
 
-## 问题
+## 构建
 
-### 为毛线不用 QCalendar?
+目前的程度，已经有了一个可在目前较新的 Plasma 桌面环境下使用的 Plasma 小程序（Applet），若有意向尝试，请看下方的构建说明。
 
-目前 QCalendar 压根不支持农历...
+默认情况下，此应用只会构建（用于测试的）独立应用。若未明确启用 `BUILD_PLASMOID` 这个 CMake 选项，则 Plasmoid（Plasma 小程序 / Applet）并不会构建。另请注意，此小程序仅包含（硬编码的）简体中文农历日历作为替代日历显示。
 
-我写这个 README 时 Qt 5.15.1 所支持的日历系统有这些:
+### 构建和测试此 Plasmoid
 
-"Julian", "Islamic Civil", "Jalali", "Milankovic", "Persian", "Islamic", "islamic-civil", "islamicc", "gregory", "Gregorian"
+请确保你构建时传递了 `-DBUILD_PLASMOID=ON` 选项，然后在构建成功后执行 `sudo make install` 进行安装即可。
 
-### 为毛线不写 QCalendar 插件?
+安装完毕后，你可以通过右键“数字时钟”组件，选择替换方案并选择“时间和日历”组件。若你不希望替换正在所用的组件而只是想看看长什么样的话，也可以使用 `plasmoidviewer` 工具:
 
-*注：我不确定下面的这些到底对不对，如果不对或者我漏掉了什么内容的话，请务必告诉我，谢谢！*
+``` shell
+$ plasmoidviewer -a net.blumia.pineapple.calendar -l topedge -f horizontal
+```
 
-因为在查找日历系统和 QCalendar 支持的资料时，发现了一些问题，下面列一些我觉得非常奇怪的来自 QCalendar 实现的问题。
+*注意: 我还不清楚 Plasma 如何加载指定位置的 C++ 原生插件，故如果你也不知道的话，不建议在安装时通过自定义 DESTDIR 来修改安装位置，如果你知道的话，请告诉我= =||*
 
-首先，要提供自己的 QCalendar 插件就需要继承 `QCalendarBackend`，然而这玩意儿是个私有 API，另外在公开的 API 中，甚至还有个 `QCalendar::YearMonthDay` 类型压根没文档。
+## 其它东西
 
-其次，目前的 QCalendar 接口设计似乎压根没法干净的处理闰月的情况。比如，假设今年闰八月，那按照 QCalendar 的实现，我不知道这里如果取月数应当得到多少。假设如果得到 9，那这到底是表示九月还是闰八月？
+`/plasmoid/package/contents/ui/calendar/` 下的文件派生自 `plasma-framework` 项目，对应路径 `/src/declarativeimports/calendar/qml/` 以及提交哈希值 `431d4cc0d4507ff8dc6b64fc039817635b600e65`。
 
-*评注: 有个 `QCalendar::monthName()` 接口可以部分的解决这个问题，我们能通过这个接口拿到想要的显示名称，但还是没法知道某个月到底是不是闰月*
-
-~~最后，QCalendar 似乎压根不关心时区问题，当调用 `QCalendar::partsFromDate()` 的时候，我不知道应该按哪个时区处理传进来的 `QDate`...~~
-
-*评注：QDate 应该总是一个 proleptic Gregorian calendar 所对应的日期..?*
-
-### 为毛线要提供接口和实现？为毛不直接只写一个实现？
-
-如上面所提，尽管我只打算提供一个简体中文农历的支持，但我还是希望这份代码可以灵活到可以方便的实现其它日历系统的支持。独立版的应用将用 Gregorian 日历作为主日历并能通过设置来选择所需使用的替代日历。替代日历会是从插件系统获取的，所以说不定有人可以从这份架子代码受益，直接复用已有代码并进行适当修改来使其能符合自己的使用需求。
-
-另外，在查资料的时候，还发现 [ICU 可能会拿到错误的农历日期](https://www.v2ex.com/t/505601)，尽管我仍然打算用 icu4c 来做农历支持，但如果有提供一套方便的插件机制的话，如果有人希望，也可以自己实现插件来换掉目前来自 ICU 的农历支持。
-
-### 为毛线不向已有项目贡献代码？
-
-其实并不是不向而是我太菜了。尽管主要目标听上去非常简单，但要想清真的实现这套东西还是要考虑很多地方的。关于日历系统的很多东西我目前都不算很熟悉，所以我觉得我能搞清楚这些东西之后，再考虑向已有项目贡献也不迟。
-
-另外我们也得确定已有项目会不会接受类似的特性请求。我如果觉得时机合适了，我会先发个特性请求来看看已有项目有没有意向进行这种支持再说。
-
-### ~~为毛线不 fork 现有项目？~~
-
-~~对于 Plasmoid 插件，我原本是打算 fork KDE plasma 官方的日历插件来着，但发现想把官方的日历插件从 `plasma-workspace` 中拆出来似乎并不简单。并且，它提供的日历接口目前看上去还不错（至少没想象的那么糟糕），于是我就可以直接写个简单的 plasmoid 插件来扩展 plasma calendar QML 控件来使它符合我的需求。~~
-
-*edit: files under `/plasmoid/package/contents/ui/calendar/` forked from `plasma-workspace` with path `/src/declarativeimports/calendar/qml/` and commit hash `431d4cc0d4507ff8dc6b64fc039817635b600e65`*
-
-至于独立的应用，由于（至少目前）独立应用的存在目的是用来实验接口和测试，所以显然自己手写是更合适的选择。
+若你对目前的实现有任何建议，或是有意愿推进 KDE 来支持此特性，可以通过开 Issue，或者在 [KDE 的特性请求汇报]((https://bugs.kde.org/show_bug.cgi?id=429892) 或 [包含我的想法的谷歌文档页面](https://docs.google.com/document/d/1iwEwwK9w34ZKOegb8xcecO4u2Pjgv2e7ifXMFKox62Q/edit?usp=sharing) 评论，或者向 [**plasma-devel** 邮件列表](https://mail.kde.org/mailman/listinfo/plasma-devel) 进行讨论！
 
 ### 许可协议？
 
