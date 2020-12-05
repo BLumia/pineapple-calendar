@@ -15,20 +15,23 @@ option(BUILD_PLASMOID "Build calendar plasmoid for KDE Plasma 5" OFF)
 
 include(FeatureSummary)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(ECM 1.4.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Quick Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Quick Widgets REQUIRED)
 find_package(ICU 66.1 COMPONENTS uc i18n REQUIRED)
+find_package(KF5 REQUIRED COMPONENTS CoreAddons Declarative I18n)
+
+include(ECMGenerateQmlTypes)
 
 if(BUILD_PLASMOID)
-    find_package(ECM 1.4.0 REQUIRED NO_MODULE)
-    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-
     include(KDEInstallDirs)
     include(KDECMakeSettings)
     include(KDECompilerSettings NO_POLICY_SCOPE)
 
-    find_package(KF5 REQUIRED COMPONENTS Plasma I18n)
-    find_package(Qt5 CONFIG REQUIRED COMPONENTS Quick Core)
+    find_package(KF5 REQUIRED COMPONENTS Plasma)
+    find_package(Qt5 CONFIG REQUIRED COMPONENTS Core)
 endif()
 
 add_subdirectory(lib)
