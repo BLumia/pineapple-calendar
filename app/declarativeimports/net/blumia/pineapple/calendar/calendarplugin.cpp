@@ -25,7 +25,7 @@ static QObject *event_plugins_manager_provider(QQmlEngine *engine, QJSEngine *sc
 void CalendarPlugin::registerTypes(const char *uri)
 {
     qDebug() << uri;
-    //Q_ASSERT(uri == QByteArray("net.blumia.pineapple.calendar"));
+    Q_ASSERT(uri == QByteArray("net.blumia.pineapple.calendar"));
     qmlRegisterType<CalendarData>(uri, 2, 0, "CalendarData");
     qmlRegisterType<Calendar>(uri, 2, 0, "Calendar");
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
