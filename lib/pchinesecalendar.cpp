@@ -118,7 +118,7 @@ QString PChineseCalendar::dayDisplayName() const
         case 0:
             result[0] = zot[0]; break;
         case 1:
-            result[0] = zot[1]; break;
+            result[0] = d % 10 == 0 ? zot[0] : zot[1]; break;
         case 2:
             result[0] = d % 10 == 0 ? a[2] : zot[2]; break;
         default:
