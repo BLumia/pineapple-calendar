@@ -2,9 +2,6 @@ set(EXE_NAME pcal)
 
 set(app_SOURCES
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
     qml.qrc
 )
 

@@ -1,5 +1,6 @@
 import QtQuick 2.13
 import QtQuick.Window 2.13
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 import "calendar" as LocalCalendar
 
@@ -10,7 +11,7 @@ Window {
     title: qsTr("Standalone Plasma Calendar Fork (test)")
 
     Rectangle {
-        color: "#888"
+        color: PlasmaCore.Theme.backgroundColor
         anchors.fill: parent
     }
 

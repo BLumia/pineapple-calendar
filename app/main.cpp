@@ -1,5 +1,3 @@
-#include "mainwindow.h"
-
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QCalendar>
@@ -38,11 +36,6 @@ int main(int argc, char *argv[])
 //    FieldPosition fp(FieldPosition::DONT_CARE);
     formatter->format(chineseCalendar->getTime(errorCode), dateString);
     qDebug() << QString::fromUtf16(dateString.getBuffer());
-
-//    QApplication a(argc, argv);
-//    MainWindow w;
-//    w.show();
-//    return a.exec();
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
