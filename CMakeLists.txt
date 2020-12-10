@@ -15,6 +15,7 @@ option(BUILD_STANDALONE_APP "Build the standalone application" OFF)
 option(BUILD_PLASMOID "Build calendar plasmoid applet for KDE Plasma 5" OFF)
 
 include(FeatureSummary)
+include(CTest)
 
 if (BUILD_STANDALONE_APP OR BUILD_PLASMOID)
     find_package(ECM 1.4.0 REQUIRED NO_MODULE)
