@@ -50,7 +50,7 @@ $ plasmoidviewer -a net.blumia.pineapple.calendar -l topedge -f horizontal
 
 Files under `/plasmoid/package/contents/ui/calendar/` are forked from `plasma-framework` with path `/src/declarativeimports/calendar/qml/` and commit hash `431d4cc0d4507ff8dc6b64fc039817635b600e65`.
 
-All `.cpp` and `.h` files which under `/app/declarativeimports/net/blumia/pineapple/calendar/` are forked from `plasma-framework` with path `/src/declarativeimports/calendar/` and commit hash `904e9bb85639e37a5965154ebb9978d72a847b52`.
+All `.cpp` and `.h` files which under `/app/declarativeimports/net/blumia/pineapple/calendar/` are forked from `plasma-framework` with path `/src/declarativeimports/calendar/` and commit hash `ec417349696d4950d0a9aa9367ee35b388046522`.
 
 If you have any suggestion about my implementation, or have any better idea about pushing alternate calendar support into KDE, please feel free to open up a new issue, or comment on the [feature request](https://bugs.kde.org/show_bug.cgi?id=429892) in the KDE bug tracker or [the Google Document page about my thought](https://docs.google.com/document/d/1iwEwwK9w34ZKOegb8xcecO4u2Pjgv2e7ifXMFKox62Q/edit?usp=sharing), or write to [**plasma-devel** mailing list](https://mail.kde.org/mailman/listinfo/plasma-devel)!
 
