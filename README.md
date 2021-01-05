@@ -14,9 +14,7 @@ Actually I'm not familiar with the date and time thing, it could be more complex
    - [x] display a Gregorian Calendar as main calendar.
    - [x] display a Simple Chinese Lunar (luni-solar) calendar as alternate calendar.
  - [ ] See the possibility if we can get this feature into KDE
-   - [Feature request in KDE bugzilla](https://bugs.kde.org/show_bug.cgi?id=429892)
-   - [Some thought about the correct way to implement this feature](https://docs.google.com/document/d/1iwEwwK9w34ZKOegb8xcecO4u2Pjgv2e7ifXMFKox62Q/edit?usp=sharing)
-   - Please let me know if you have any suggestion or would like to offer any help!
+   - [See this page which will track the state of the force to make the feature into KDE](https://github.com/BLumia/pineapple-calendar/wiki/Make-the-feature-into-KDE)
  - [ ] A standalone Qt calendar application, which...
    - [ ] use Gregorian Calendar as main calendar, can set alternate calendar which loaded via its plugin system.
    - [ ] comes with a Simple Chinese Lunar calendar plugin.
@@ -57,3 +55,5 @@ If you have any suggestion about my implementation, or have any better idea abou
 ### License?
 
 TBD, will be released under an OSI approved DFSG-compatible license.
+
+For the plasma applet which provided in this repo, it's licensed under the license of [LGPL-2.1-or-later](https://spdx.org/licenses/LGPL-2.1-or-later.html).
