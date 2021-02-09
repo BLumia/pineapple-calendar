@@ -27,7 +27,7 @@ public:
     virtual int32_t year() const;
     virtual bool isLeapMonth() const;
 
-    QString formattedDataString(const UnicodeString & str) const;
+    QString formattedDataString(const UnicodeString & str, bool hanidays = false) const;
 
 protected:
     Calendar * m_cal = nullptr;

@@ -84,11 +84,17 @@ bool PIcuCalendarPrivate::isLeapMonth() const
 
 // For formatting, see the documentation of SimpleDateFormat:
 // https://unicode-org.github.io/icu-docs/apidoc/released/icu4c/classicu_1_1SimpleDateFormat.html#details
-QString PIcuCalendarPrivate::formattedDataString(const UnicodeString &str) const
+// See also:
+// https://github.com/apple-open-source/macos/blob/master/ICU/icuSources/test/intltest/dtptngts.cpp
+// The Apple forked version of ICU have some additional unit-tests for hanidays...
+QString PIcuCalendarPrivate::formattedDataString(const UnicodeString &str, bool hanidays) const
 {
+    Locale locale("zh", 0, 0,
+                  hanidays ? "calendar=chinese;numbers=hanidays"
+                           : "calendar=chinese");
     UErrorCode errorCode = U_ZERO_ERROR;
     UnicodeString dateString;
-    SimpleDateFormat* formatter = new SimpleDateFormat(str, errorCode);
+    SimpleDateFormat* formatter = new SimpleDateFormat(str, locale, errorCode);
     formatter->setCalendar(*m_cal);
     formatter->format(m_cal->getTime(errorCode), dateString);
 

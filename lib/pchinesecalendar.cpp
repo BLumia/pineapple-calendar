@@ -21,6 +21,7 @@ public:
 
     QString yearDisplayName() const;
     QString monthDisplayName() const;
+    QString dayDisplayName() const;
 
 private:
     PAbstructCalendar *q_ptr;
@@ -49,6 +50,11 @@ QString PChineseCalendarPrivate::yearDisplayName() const
 QString PChineseCalendarPrivate::monthDisplayName() const
 {
     return formattedDataString("MMM");
+}
+
+QString PChineseCalendarPrivate::dayDisplayName() const
+{
+    return formattedDataString("d", true);
 }
 
 // --------------- Item Get Border Line --------------- //
@@ -105,31 +111,14 @@ bool PChineseCalendar::setTimeZone(const QString timezoneId)
 
 QString PChineseCalendar::alternateDayDisplayName() const
 {
-    return (day() == 1) ? monthDisplayName() :  dayDisplayName(); 
+    return (day() == 1) ? monthDisplayName() : dayDisplayName();
 }
 
 QString PChineseCalendar::dayDisplayName() const
 {
-    auto dayNameByDate = [](int d) -> std::wstring {
-        const std::wstring zot=L"初十廿三";
-        const std::wstring a=L"十一二三四五六七八九";
-        std::wstring result=L"这啥";
-        switch (d / 10) {
-        case 0:
-            result[0] = zot[0]; break;
-        case 1:
-            result[0] = d % 10 == 0 ? zot[0] : zot[1]; break;
-        case 2:
-            result[0] = d % 10 == 0 ? a[2] : zot[2]; break;
-        default:
-            result[0] = zot[3];
-        }
-        result[1] = a[d % 10];
+    Q_D(const PChineseCalendar);
 
-        return result;
-    };
-
-    return QString::fromStdWString(dayNameByDate(day()));
+    return d->dayDisplayName();
 }
 
 QString PChineseCalendar::monthDisplayName() const
