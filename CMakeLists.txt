@@ -12,12 +12,13 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_STANDALONE_APP "Build the standalone application" OFF)
+option(BUILD_DECLARATIVE_EXTENSION "Build the Calendar Utils QML extension" ON)
 option(BUILD_PLASMOID "Build calendar plasmoid applet for KDE Plasma 5" OFF)
 
 include(FeatureSummary)
 include(CTest)
 
-if (BUILD_STANDALONE_APP OR BUILD_PLASMOID)
+if (BUILD_STANDALONE_APP OR BUILD_DECLARATIVE_EXTENSION OR BUILD_PLASMOID)
     find_package(ECM 1.4.0 REQUIRED NO_MODULE)
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 endif()
@@ -58,6 +59,10 @@ endif()
 if (BUILD_TESTING)
     add_subdirectory(test)
 endif()
+
+if (BUILD_STANDALONE_APP OR BUILD_DECLARATIVE_EXTENSION OR BUILD_PLASMOID)
+    add_subdirectory(declarativeimports)
+endif ()
 
 if(BUILD_PLASMOID)
     add_subdirectory(plasmoid)
