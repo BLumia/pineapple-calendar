@@ -9,9 +9,9 @@ import QtQuick 2.0
 import org.kde.plasma.calendar 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as Components
-import org.kde.plasma.plasmoid 2.0 // for alternate calendar
 
 import org.kde.plasma.calendar 2.0
+import net.blumia.calendar 0.1 as PCal
 
 MouseArea {
     id: dayStyle
@@ -138,7 +138,7 @@ MouseArea {
         }
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        text: model.label || plasmoid.nativeInterface.alternateCalendarDayText(yearNumber, monthNumber, dayNumber)
+        text: model.label || PCal.CalendarUtils.alternateCalendarDayText(yearNumber, monthNumber, dayNumber)
         opacity: isCurrent ? 1.0 : 0.5
         wrapMode: Text.NoWrap
         elide: Text.ElideRight
