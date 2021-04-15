@@ -24,7 +24,7 @@ if (BUILD_STANDALONE_APP OR BUILD_DECLARATIVE_EXTENSION OR BUILD_PLASMOID)
 endif()
 
 # anyway libpcal will always be built.
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Test REQUIRED)
 find_package(ICU 66.1 COMPONENTS uc i18n REQUIRED)
 
@@ -39,13 +39,14 @@ if (BUILD_TESTING)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test REQUIRED)
 endif()
 
+if (BUILD_DECLARATIVE_EXTENSION)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Quick Qml REQUIRED)
+endif()
+
 if(BUILD_PLASMOID)
     include(KDEInstallDirs)
-    include(KDECMakeSettings)
-    include(KDECompilerSettings NO_POLICY_SCOPE)
 
-    find_package(KF5 REQUIRED COMPONENTS Plasma I18n)
-    find_package(Qt5 CONFIG REQUIRED COMPONENTS Core)
+    find_package(KF5 REQUIRED COMPONENTS Plasma)
 endif()
 
 # Then let's add the sub directories...
