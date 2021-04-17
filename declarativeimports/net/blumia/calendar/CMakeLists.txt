@@ -19,7 +19,6 @@ target_link_libraries(${BIN_NAME}
     Qt5::Core
     Qt5::Quick
     Qt5::Qml
-    Qt5::Gui
     libpcal
 )
 
