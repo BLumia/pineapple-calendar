@@ -10,8 +10,8 @@ CalendarData::CalendarData(QObject *parent)
     : QObject(parent)
     , m_types(Holiday | Event | Todo | Journal)
 {
-//   m_etmCalendar = new ETMCalendar();
-//   m_etmCalendar->setParent(this); //TODO: hit sergio
+    //   m_etmCalendar = new ETMCalendar();
+    //   m_etmCalendar->setParent(this); //TODO: hit sergio
 
     // EntityTreeModel *model = m_etmCalendar->entityTreeModel();
     // model->setCollectionFetchStrategy(EntityTreeModel::InvisibleCollectionFetch);
@@ -25,7 +25,7 @@ CalendarData::CalendarData(QObject *parent)
     //  m_filteredList = new DateTimeRangeFilterModel(this);
     //  m_filteredList->setSourceModel(roleModel);
 
-//   updateTypes();
+    //   updateTypes();
 }
 
 QDate CalendarData::startDate() const
@@ -40,8 +40,8 @@ void CalendarData::setStartDate(const QDate &dateTime)
     }
 
     m_startDate = dateTime;
-//   m_filteredList->setStartDate(m_startDate);
-    emit startDateChanged();
+    //   m_filteredList->setStartDate(m_startDate);
+    Q_EMIT startDateChanged();
 }
 
 QDate CalendarData::endDate() const
@@ -57,7 +57,7 @@ void CalendarData::setEndDate(const QDate &dateTime)
 
     m_endDate = dateTime;
     //  m_filteredList->setEndDate(m_endDate);
-    emit endDateChanged();
+    Q_EMIT endDateChanged();
 }
 
 int CalendarData::types() const
@@ -74,4 +74,3 @@ bool CalendarData::loading() const
 {
     return false;
 }
-

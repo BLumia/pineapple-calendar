@@ -8,13 +8,14 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
 
-#include <QObject>
 #include <QDate>
-#include <QAbstractListModel>
 #include <QJsonArray>
+#include <QObject>
 
 #include "daydata.h"
 #include "daysmodel.h"
+
+class QAbstractItemModel;
 
 class Calendar : public QObject
 {
@@ -110,15 +111,14 @@ class Calendar : public QObject
      * metadata about the current day. The exact metadata can be found in "daysmodel.cpp"
      * where the exact names usable in QML are being set.
      */
-    Q_PROPERTY(QAbstractListModel *daysModel READ daysModel CONSTANT)
-
+    Q_PROPERTY(QAbstractItemModel *daysModel READ daysModel CONSTANT)
 
 public:
     enum Type {
         Holiday = 1,
         Event = 2,
         Todo = 4,
-        Journal = 8
+        Journal = 8,
     };
     Q_ENUM(Type)
     Q_DECLARE_FLAGS(Types, Type)
@@ -126,7 +126,7 @@ public:
     enum DateMatchingPrecision {
         MatchYear,
         MatchYearAndMonth,
-        MatchYearMonthAndDay
+        MatchYearMonthAndDay,
     };
     Q_ENUM(DateMatchingPrecision)
 
@@ -165,7 +165,7 @@ public:
     int year() const;
 
     // Models
-    QAbstractListModel *daysModel() const;
+    QAbstractItemModel *daysModel() const;
     QJsonArray weeksModel() const;
 
     // QML invokables
