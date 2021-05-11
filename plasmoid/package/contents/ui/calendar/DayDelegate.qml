@@ -129,6 +129,7 @@ MouseArea {
 
     Components.Label {
         id: alternateLabel
+        visible: model.label ? false : true
         width: todayRect.width
         height: todayRect.height / 2
         anchors {
