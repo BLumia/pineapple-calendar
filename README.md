@@ -46,7 +46,7 @@ $ plasmoidviewer -a net.blumia.pineapple.calendar -l topedge -f horizontal
 
 ## Other stuff
 
-Files under `/plasmoid/package/contents/ui/calendar/` are forked from `plasma-framework` with path `/src/declarativeimports/calendar/qml/` and commit hash `431d4cc0d4507ff8dc6b64fc039817635b600e65`.
+Files under `/plasmoid/package/contents/ui/calendar/` are forked from `plasma-framework` with path `/src/declarativeimports/calendar/qml/` and commit hash `2ce8590eaeab35f3cf99ce8cfb4ef7db4f9cd263`.
 
 All `.cpp` and `.h` files which under `/app/declarativeimports/net/blumia/pineapple/calendar/` and `.qml` files under `/app/calendar/` are forked from `plasma-framework` with path `/src/declarativeimports/calendar/` and commit hash `2ce8590eaeab35f3cf99ce8cfb4ef7db4f9cd263`.
 

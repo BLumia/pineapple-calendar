@@ -70,60 +70,56 @@ PlasmaComponents3.AbstractButton {
         }
     }
 
-    PlasmaExtras.Heading {
-        id: alternateLabel
-        width: parent.width
-        height: parent.height / 2
-        anchors {
-            bottom: parent.bottom
-            left: parent.left
-            margins: PlasmaCore.Units.smallSpacing
+    Row {
+        visible: false
+        spacing: PlasmaCore.Units.smallSpacing
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: PlasmaCore.Units.smallSpacing
+        anchors.horizontalCenter: parent.horizontalCenter
+        Repeater {
+            model: DelegateModel {
+                model: dayStyle.dayModel
+                rootIndex: modelIndex(index)
+                delegate: Rectangle {
+                    width: PlasmaCore.Units.smallSpacing * 1.5
+                    height: width
+                    radius: width / 2
+                    color: eventColor || PlasmaCore.Theme.highlightColor
+                }
+            }
         }
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        text: model.label || PCal.CalendarUtils.alternateCalendarDayText(yearNumber, monthNumber, dayNumber)
-        opacity: isCurrent ? 1.0 : 0.5
-        wrapMode: Text.NoWrap
-        elide: Text.ElideRight
-        fontSizeMode: Text.HorizontalFit
-        font.pointSize: -1
     }
 
-    // blumia: don't know how to get these dot working, so comment it out for now...
-//    Row {
-//        spacing: PlasmaCore.Units.smallSpacing
-//        anchors.bottom: parent.bottom
-//        anchors.bottomMargin: PlasmaCore.Units.smallSpacing
-//        anchors.horizontalCenter: parent.horizontalCenter
-//        Repeater {
-//            model: DelegateModel {
-//                model: dayStyle.dayModel
-//                rootIndex: modelIndex(index)
-//                delegate: Rectangle {
-//                    width: PlasmaCore.Units.smallSpacing * 1.5
-//                    height: width
-//                    radius: width / 2
-//                    color: eventColor || PlasmaCore.Theme.highlightColor
-//                }
-//            }
-//        }
-//    }
-
-    contentItem: PlasmaExtras.Heading {
-        id: label
-        width: parent.width
-        height: parent.height / 2
-        anchors {
-            top: parent.top
-            left: parent.left
-            margins: PlasmaCore.Units.smallSpacing
+    contentItem: Column {
+        spacing: 0 // PlasmaCore.Units.smallSpacing
+        anchors.fill: parent
+        anchors.bottomMargin: PlasmaCore.Units.smallSpacing * 3
+        anchors.horizontalCenter: parent.horizontalCenter
+        PlasmaExtras.Heading {
+            id: label
+            width: parent.width
+            height: parent.height / (alternateLabel.visible ? 2 : 1)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            text: model.label || dayNumber
+            opacity: isCurrent ? 1.0 : 0.5
+            wrapMode: Text.NoWrap
+            elide: Text.ElideRight
+            fontSizeMode: Text.HorizontalFit
         }
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        text: model.label || dayNumber
-        opacity: isCurrent ? 1.0 : 0.5
-        wrapMode: Text.NoWrap
-        elide: Text.ElideRight
-        fontSizeMode: Text.HorizontalFit
+        PlasmaExtras.Heading {
+            visible: model.label ? false : true
+            id: alternateLabel
+            width: parent.width
+            height: parent.height / 2
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            text: model.label || PCal.CalendarUtils.alternateCalendarDayText(yearNumber, monthNumber, dayNumber)
+            opacity: isCurrent ? 1.0 : 0.5
+            wrapMode: Text.NoWrap
+            elide: Text.ElideRight
+            fontSizeMode: Text.HorizontalFit
+            font.pointSize: -1
+        }
     }
 }

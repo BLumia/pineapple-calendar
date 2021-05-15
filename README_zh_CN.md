@@ -48,7 +48,7 @@ $ plasmoidviewer -a net.blumia.pineapple.calendar -l topedge -f horizontal
 
 ## 其它东西
 
-`/plasmoid/package/contents/ui/calendar/` 下的文件派生自 `plasma-framework` 项目，对应路径 `/src/declarativeimports/calendar/qml/` 以及提交哈希值 `431d4cc0d4507ff8dc6b64fc039817635b600e65`。
+`/plasmoid/package/contents/ui/calendar/` 下的文件派生自 `plasma-framework` 项目，对应路径 `/src/declarativeimports/calendar/qml/` 以及提交哈希值 `2ce8590eaeab35f3cf99ce8cfb4ef7db4f9cd263`。
 
 `/app/declarativeimports/net/blumia/pineapple/calendar/` 下的 `.cpp` 和 `.h` 文件以及 `/app/calendar/` 下的 `.qml` 文件派生自 `plasma-framework` 项目，对应路径 `/src/declarativeimports/calendar/` 以及提交哈希值 `2ce8590eaeab35f3cf99ce8cfb4ef7db4f9cd263`，对于 C++ 文件，首次 checkin 的提交仅更改了 `calendarplugin.cpp` 中的一处 `Q_ASSERT`，未进行其它任何更改。对于 QML 文件，增加了农历显示并注释掉了日历活动的显示支持（因为存在问题）。
 
