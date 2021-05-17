@@ -12,7 +12,8 @@ import org.kde.kquickcontrolsaddons 2.0 // For KCMShell
 
 Item {
     Plasmoid.compactRepresentation: CompactRepresentation {}
-    Plasmoid.fullRepresentation: FullRepresentation {}
+    Plasmoid.fullRepresentation: CalendarView {} // with agenda
+    //Plasmoid.fullRepresentation: FullRepresentation {} // just a calendar
 
     function action_clockkcm() {
         KCMShell.openSystemSettings("clock");

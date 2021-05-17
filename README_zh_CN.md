@@ -50,7 +50,7 @@ $ plasmoidviewer -a net.blumia.pineapple.calendar -l topedge -f horizontal
 
 `/plasmoid/package/contents/ui/calendar/` 下的文件派生自 `plasma-framework` 项目，对应路径 `/src/declarativeimports/calendar/qml/` 以及提交哈希值 `2ce8590eaeab35f3cf99ce8cfb4ef7db4f9cd263`。
 
-`/app/declarativeimports/net/blumia/pineapple/calendar/` 下的 `.cpp` 和 `.h` 文件以及 `/app/calendar/` 下的 `.qml` 文件派生自 `plasma-framework` 项目，对应路径 `/src/declarativeimports/calendar/` 以及提交哈希值 `2ce8590eaeab35f3cf99ce8cfb4ef7db4f9cd263`，对于 C++ 文件，首次 checkin 的提交仅更改了 `calendarplugin.cpp` 中的一处 `Q_ASSERT`，未进行其它任何更改。对于 QML 文件，增加了农历显示并注释掉了日历活动的显示支持（因为存在问题）。
+几乎所有 `/app/declarativeimports/net/blumia/pineapple/calendar/` 下的 `.cpp` 和 `.h` 文件以及 `/app/calendar/` 下的 `.qml` 文件派生自 `plasma-framework` 项目，对应路径 `/src/declarativeimports/calendar/` 以及提交哈希值 `2ce8590eaeab35f3cf99ce8cfb4ef7db4f9cd263`，例外是 `CalendarView.qml` 来自 `plasma-workspace` 仓库的 tag `5.21` 版本。对于 C++ 文件，首次 checkin 的提交仅更改了 `calendarplugin.cpp` 中的一处 `Q_ASSERT`，未进行其它任何更改。
 
 若你对目前的实现有任何建议，或是有意愿推进 KDE 来支持此特性，可以通过开 Issue，或者在 [KDE 的特性请求汇报]((https://bugs.kde.org/show_bug.cgi?id=429892) 或 [包含我的想法的谷歌文档页面](https://docs.google.com/document/d/1iwEwwK9w34ZKOegb8xcecO4u2Pjgv2e7ifXMFKox62Q/edit?usp=sharing) 评论，或者向 [**plasma-devel** 邮件列表](https://mail.kde.org/mailman/listinfo/plasma-devel) 进行讨论！
 
