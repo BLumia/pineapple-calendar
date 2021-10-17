@@ -1,5 +1,7 @@
 # Pineapple Calendar
 
+[Install Guide | 安装指南](https://github.com/BLumia/pineapple-calendar/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97)
+
 The motivation is to solve the issue that we, well, I, am not able to watch Chinese Lunar Calendar under KDE. The current goal of this project is, provide some generic code (probably a library) so I can create a plasmoid for Plasma 5 to display Chinese Lunar Calendar, and also provide a simple standalone application which also use the same code for quick testing and maybe some further development.
 
 Although the goal of this project will only provide Simple Chinese Luni-solar calendar support, I still would like to make the code extendable/flexable to be able to implement other calendar system support.
