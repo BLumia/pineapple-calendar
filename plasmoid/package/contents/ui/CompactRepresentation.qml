@@ -1,20 +1,13 @@
-import QtQuick 2.1
-import QtQuick.Layouts 1.1
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
-import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents
 
 Item {
     id: mainWindow
-    //Layout.minimumWidth: Plasmoid.configuration.marginSize
     Layout.minimumWidth: textMetrics.width
     Layout.minimumHeight: 16
-    property string textColor: Plasmoid.configuration.textColor
-    property string textFont: Plasmoid.configuration.textFont
 
     PlasmaCore.DataSource {
         id: dataSource
@@ -27,16 +20,18 @@ Item {
         id: time
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        font.weight: plasmoid.configuration.bold ? Font.Bold : Font.Normal
         color: theme.textColor
-        font.pixelSize: plasmoid.configuration.clockFontSize
-        text: Qt.formatDateTime( dataSource.data["Local"]["DateTime"],"h:mm\nyyyy/MM/dd" )
+        font.pixelSize: plasmoid.configuration.fontPixelSize
+        text: Qt.formatDateTime(
+            dataSource.data["Local"]["DateTime"],
+            plasmoid.configuration.datetimeFormat
+        )
         anchors.fill: parent
 
         TextMetrics {
             id: textMetrics
-            font.family: label.font.family
-            font.pointSize: label.font.pointSize
+            font.family: time.font.family
+            font.pointSize: time.font.pointSize
             text: time.text
         }
     }
