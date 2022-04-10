@@ -89,7 +89,7 @@ PlasmaComponents3.Page {
                 onToggled: plasmoid.configuration.pin = checked
                 icon.name: "window-pin"
                 PlasmaComponents3.ToolTip {
-                    text: i18n("Keep Open")
+                    text: i18nd("plasma_applet_org.kde.plasma.digitalclock", "Keep Open")
                 }
             }
         }
@@ -174,7 +174,7 @@ PlasmaComponents3.Page {
 
                 level: 2
 
-                text: i18n("Events")
+                text: i18nd("plasma_applet_org.kde.plasma.digitalclock", "Events")
                 maximumLineCount: 1
                 elide: Text.ElideRight
             }
@@ -419,8 +419,8 @@ PlasmaComponents3.Page {
                     verticalAlignment: Text.AlignVCenter
                     anchors.leftMargin: units.largeSpacing
                     anchors.rightMargin: units.largeSpacing
-                    text: monthView.isToday(monthView.currentDate) ? i18n("No events for today")
-                                                                : i18n("No events for this day");
+                    text: monthView.isToday(monthView.currentDate) ? i18nd("plasma_applet_org.kde.plasma.digitalclock", "No events for today")
+                                                                : i18nd("plasma_applet_org.kde.plasma.digitalclock", "No events for this day");
                     level: 3
                     enabled: false
                     visible: holidaysList.count == 0

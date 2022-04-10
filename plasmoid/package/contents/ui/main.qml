@@ -9,6 +9,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kquickcontrolsaddons 2.0 // For KCMShell
+import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 
 Item {
     Plasmoid.compactRepresentation: CompactRepresentation {}
@@ -30,5 +31,9 @@ Item {
         if (KCMShell.authorize("kcm_formats.desktop").length > 0) {
             plasmoid.setAction("formatskcm", i18nd("plasma_applet_org.kde.plasma.digitalclock", "Set Time Format…"), "gnumeric-format-thousand-separator");
         }
+
+        // Set the list of enabled plugins from config
+        // to the manager
+        PlasmaCalendar.EventPluginsManager.enabledPlugins = plasmoid.configuration.enabledCalendarPlugins;
     }
 }

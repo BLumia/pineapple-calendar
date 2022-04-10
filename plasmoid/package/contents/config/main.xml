@@ -9,6 +9,10 @@
         <entry name="datetimeFormat" type="String">
             <default>h:mm&#x000A;yyyy/MM/dd</default>
         </entry>
+        <entry name="enabledCalendarPlugins" type="StringList">
+            <label>A list of plugins where additional calendar event data can be sourced.</label>
+            <default></default>
+        </entry>
     </group>
 
 </kcfg>
