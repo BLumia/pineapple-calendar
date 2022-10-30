@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.0
 import org.kde.kirigami 2.4 as Kirigami
+import org.kde.kirigamiaddons.labs.mobileform 0.1 as MobileForm
 
 Item {
     id: page
@@ -11,41 +12,75 @@ Item {
     property alias cfg_enableDesktopPeeker: enableDesktopPeeker.checked
     property alias cfg_peekerWidth: peekerWidth.value
 
-    Kirigami.FormLayout {
+    ColumnLayout {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        Item {
-            Kirigami.FormData.label: "Panel"
-            Kirigami.FormData.isSection: true
+        MobileForm.FormCard {
+            Layout.fillWidth: true
+            contentItem: ColumnLayout {
+                spacing: 0
+                MobileForm.FormCardHeader {
+                    title: i18n("Panel")
+                }
+
+                MobileForm.AbstractFormDelegate {
+                    Layout.fillWidth: true
+                    contentItem: RowLayout {
+                        Label {
+                            text: i18n("Font size")
+                            Layout.fillWidth: true
+                        }
+                        SpinBox {
+                            id: fontPixelSize
+                        }
+                    }
+                }
+
+                MobileForm.AbstractFormDelegate {
+                    Layout.fillWidth: true
+                    contentItem: RowLayout {
+                        Label {
+                            text: i18n("Datetime display format")
+                            Layout.fillWidth: true
+                        }
+                        TextArea {
+                            id: datetimeFormatLabel
+                            placeholderText: "h:mm\\nyyyy/MM/dd"
+                        }
+                    }
+                }
+            }
         }
 
-        SpinBox {
-            id: fontPixelSize
-            Kirigami.FormData.label: "Font size:"
-        }
+        MobileForm.FormCard {
+            Layout.fillWidth: true
+            contentItem: ColumnLayout {
+                spacing: 0
+                MobileForm.FormCardHeader {
+                    title: i18n("Desktop Peeker")
+                }
 
-        TextArea {
-            id: datetimeFormatLabel
-            Kirigami.FormData.label: "Datetime display format:"
-            placeholderText: "h:mm\\nyyyy/MM/dd"
-        }
+                MobileForm.FormSwitchDelegate {
+                    id: enableDesktopPeeker
+                    text: i18n("Show desktop peeker")
+                }
 
-        Item {
-            Kirigami.FormData.label: "Desktop Peeker"
-            Kirigami.FormData.isSection: true
-        }
-
-        CheckBox {
-            id: enableDesktopPeeker
-            Kirigami.FormData.label: "Show desktop peeker:"
-        }
-
-        SpinBox {
-            id: peekerWidth
-            from: 1
-            to: 50
-            Kirigami.FormData.label: "Peeker width:"
+                MobileForm.AbstractFormDelegate {
+                    Layout.fillWidth: true
+                    contentItem: RowLayout {
+                        Label {
+                            text: i18n("Peeker width")
+                            Layout.fillWidth: true
+                        }
+                        SpinBox {
+                            id: peekerWidth
+                            from: 1
+                            to: 50
+                        }
+                    }
+                }
+            }
         }
     }
 }
