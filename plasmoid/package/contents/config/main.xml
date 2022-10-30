@@ -13,6 +13,14 @@
             <label>A list of plugins where additional calendar event data can be sourced.</label>
             <default></default>
         </entry>
+        <entry name="enableDesktopPeeker" type="Bool">
+            <label>Display a desktop peeker next to the datetime label.</label>
+            <default>false</default>
+        </entry>
+        <entry name="peekerWidth" type="Int">
+            <label>The width of the desktop peeker if enabled.</label>
+            <default>6</default>
+        </entry>
     </group>
 
     <group name="Timezone">
