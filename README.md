@@ -1,8 +1,10 @@
 # Pineapple Calendar
 
+*Note: since Plasma 5.26, the Digital Clock plasmoid comes from KDE now has built-in support for alternate calendar!*
+
 [Install Guide | 安装指南](https://github.com/BLumia/pineapple-calendar/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97)
 
-The motivation is to solve the issue that we, well, I, am not able to watch Chinese Lunar Calendar under KDE. The current goal of this project is, provide some generic code (probably a library) so I can create a plasmoid for Plasma 5 to display Chinese Lunar Calendar, and also provide a simple standalone application which also use the same code for quick testing and maybe some further development.
+The motivation is to solve the issue that we, well, I, was not able to watch Chinese Lunar Calendar under KDE. The current goal of this project is, provide some generic code (probably a library) so I can create a plasmoid for Plasma 5 to display Chinese Lunar Calendar, and also provide a simple standalone application which also use the same code for quick testing and maybe some further development.
 
 Although the goal of this project will only provide Simple Chinese Luni-solar calendar support, I still would like to make the code extendable/flexable to be able to implement other calendar system support.
 
@@ -15,12 +17,8 @@ Actually I'm not familiar with the date and time thing, it could be more complex
  - [x] A Plasmoid for KDE Plasma 5, which can...
    - [x] display a Gregorian Calendar as main calendar.
    - [x] display a Simple Chinese Lunar (luni-solar) calendar as alternate calendar.
- - [ ] See the possibility if we can get this feature into KDE
+ - [x] See the possibility if we can get this feature into KDE
    - [See this page which will track the state of the force to make the feature into KDE](https://github.com/BLumia/pineapple-calendar/wiki/Make-the-feature-into-KDE)
- - [ ] A standalone Qt calendar application, which...
-   - [ ] use Gregorian Calendar as main calendar, can set alternate calendar which loaded via its plugin system.
-   - [ ] comes with a Simple Chinese Lunar calendar plugin.
-   - [ ] share the same code with the Plasmoid one as much as possible.
 
 ### Non-goal, but may consider
 

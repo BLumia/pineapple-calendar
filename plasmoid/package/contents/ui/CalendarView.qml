@@ -43,7 +43,7 @@ PlasmaComponents3.Page {
 
     readonly property int paddings: units.smallSpacing
     readonly property bool showAgenda: PlasmaCalendar.EventPluginsManager.enabledPlugins.length > 0
-    readonly property bool showClocks: false//plasmoid.configuration.selectedTimeZones.length > 1
+    readonly property bool showClocks: plasmoid.configuration.selectedTimeZones.length > 1
 
     property alias borderWidth: monthView.borderWidth
     property alias monthView: monthView
@@ -452,19 +452,19 @@ PlasmaComponents3.Page {
 
                     level: 2
 
-                    text: i18n("Time Zones")
+                    text: i18nd("plasma_applet_org.kde.plasma.digitalclock", "Time Zones")
                     maximumLineCount: 1
                     elide: Text.ElideRight
                 }
 
                 PlasmaComponents3.ToolButton {
-                    visible: KCMShell.authorize("clock.desktop").length > 0
-                    text: i18n("Switch...")
+                    visible: KCMShell.authorize("kcm_clock.desktop").length > 0
+                    text: i18nd("plasma_applet_org.kde.plasma.digitalclock", "Switch…")
                     icon.name: "preferences-system-time"
-                    onClicked: KCMShell.openSystemSettings("clock")
+                    onClicked: KCMShell.openSystemSettings("kcm_clock")
 
                     PlasmaComponents3.ToolTip {
-                        text: i18n("Switch to another timezone")
+                        text: i18nd("plasma_applet_org.kde.plasma.digitalclock", "Switch to another timezone")
                     }
                 }
             }
@@ -508,7 +508,7 @@ PlasmaComponents3.Page {
                             anchors.fill: parent
 
                             PlasmaComponents3.Label {
-                                text: root.nameForZone(modelData)
+                                text: modelData//root.nameForZone(modelData)
                                 font.weight: listItem.isCurrentTimeZone ? Font.Bold : Font.Normal
                                 maximumLineCount: 1
                                 elide: Text.ElideRight

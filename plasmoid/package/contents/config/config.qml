@@ -17,6 +17,12 @@ ConfigModel {
         icon: "office-calendar"
         source: "configCalendar.qml"
     }
+    ConfigCategory {
+        name: i18nd("plasma_applet_org.kde.plasma.digitalclock", "Time Zones")
+        icon: "preferences-system-time"
+        source: "configTimeZones.qml"
+    }
+
 
     property Instantiator __eventPlugins: Instantiator {
         model: PlasmaCalendar.EventPluginsManager.model
